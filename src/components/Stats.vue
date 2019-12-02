@@ -2,22 +2,47 @@
   <div class="stats">
     <h1>A different component</h1>
     <p>There are currently {{ countLinks }} links</p>
+    <button v-on:click="removeLinks">Remove all links</button>
+    <p>{{ msg }}</p>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'Stats',
+  data() {
+    return {
+      msg: ''
+    }
+  },  
   computed: {
     ...mapGetters([
       'countLinks'
     ]),
+  },
+  methods: {
+    ...mapMutations(['REMOVE_ALL']),
+    ...mapActions(['removeAll']),
+    removeAllLinks() {
+      this.removeALL().then(() => {
+        this.msg = 'They have been removed'
+      })
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+button {
+    padding: 10px;
+    margin-top: 30px;
+    width: 100%;
+    background: none;
+    border: 1px solid lightgray;
+    outline: 0;
+    cursor: pointer;
+}
 </style>
