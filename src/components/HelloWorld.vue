@@ -3,31 +3,67 @@
     <div class="left">
       <h1>{{ title }}</h1>
       <ul>
-        <li v-for="(link, index) in links" v-bind:key="index">
-        {{ link }}
-        </li>
+        <li v-for="(link, index) in links" v-bind:key="index">{{ link }}</li>
       </ul>
     </div>
     <div class="right">
-      hello
+      <stats />
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import Stats from "@/components/Stats.vue";
 
 export default {
   name: "HelloWorld",
+  components: {
+    Stats
+  },
   computed: {
-    ...mapState([
-      "title",
-      'links'
-      ])
+    ...mapState(["title", "links"])
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
+  html, #app, .home {
+    height: 100%;
+  }
+  body {
+    background-color: #F4F4F4;
+    margin: 0;
+    height: 100%;
+  }
+
+  .hello {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 100%;
+    grid-template-areas:
+      "left right";
+    height: 100%;
+  }
+
+  .left, .right {
+    padding: 30px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  ul li {
+    padding: 20px;
+    background: white;
+    margin-bottom: 8px;
+  }
+
+  .right {
+    grid-area: right;
+    background-color: #E9E9E9;
+  }
+
 </style>
