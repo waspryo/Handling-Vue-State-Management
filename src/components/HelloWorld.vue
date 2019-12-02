@@ -1,28 +1,33 @@
 <template>
   <div class="hello">
-      <div class="left">
-         <h1>{{ title }}</h1>
-      </div>
-      <div class="right">
-      </div>
+    <div class="left">
+      <h1>{{ title }}</h1>
+      <ul>
+        <li v-for="(link, index) in links" v-bind:key="index">
+        {{ link }}
+        </li>
+      </ul>
+    </div>
+    <div class="right">
+      hello
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
+import { mapState } from "vuex";
 
 export default {
   name: "HelloWorld",
   computed: {
     ...mapState([
-      'title'
-    ])
+      "title",
+      'links'
+      ])
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>
